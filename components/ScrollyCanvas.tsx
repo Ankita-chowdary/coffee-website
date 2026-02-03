@@ -25,10 +25,13 @@ export default function ScrollyCanvas({ folderPath, scrollProgress }: ScrollyCan
             // Clear previous images to help GC
             setImages([]);
 
+            // Get the basePath from environment variable or default to empty
+            const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
             for (let i = 1; i <= frameCount; i++) {
                 const img = new Image();
                 // Assuming format is 1.jpg, 2.jpg...
-                img.src = `${folderPath}/${i}.jpg`;
+                img.src = `${basePath}${folderPath}/${i}.jpg`;
 
                 img.onload = () => {
                     loadedCount++;
